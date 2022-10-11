@@ -1,4 +1,4 @@
-require("dotenv").config()
+
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require('./keys')
@@ -6,16 +6,19 @@ const db = require("../models/index");
 const User = db.user;
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null,user.googleId || User.id);
 });
 
 passport.deserializeUser((id, done) => {
- User.findByPK(id).then((user) => {
-   done(null, user);
- });
- })
+  const user = User.find(id)
+    done(null, user);
+});
 
-
+// passport.deserializeUser((id, done) => {
+//   User.findone(id).then((user) => {
+//     done(null, user);
+//   });
+// });
 
 passport.use(
   new GoogleStrategy(
@@ -28,19 +31,21 @@ passport.use(
       // check if user already exists in our own db
       const socialUser = await User.findOne({
         where: {
-          socialID: profile.id,
+          googleId: profile.id,
         },
       });
       if (socialUser) {
         return done(null, socialUser);
       }
-      const user = await new User({
-        socialID: profile.id,
+     
+      const newUser = await User.create({
+        googleId: profile.id,
         username: profile.displayName,
-        Picture: profile._json.picture,
-        email: profile.emails,
-      }).save();
-      done(null, user);
+        picture: profile._json.picture
+      });
+      done(null, newUser);
     }
   )
 );
+
+

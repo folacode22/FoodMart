@@ -26,7 +26,7 @@ role
 
 
 exports.completeRegister = async (req,res)=>{
-    const id = req.params.socialID
+    const id = req.params.google
  const finduser = await User.findByPK({
     where: id
  });
@@ -55,3 +55,14 @@ exports.findAllUser = async (req, res) =>{
 
 };
 
+exports.findUser = async(req, res)=>{
+  try {
+    const id = req.params.id
+    const user = User.findByPK(id)
+    return res.status(200).json(user)
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "internal server error" });
+  }
+}

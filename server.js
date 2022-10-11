@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const passport = require("passport");
 const passportSetup = require("./config/google")
+const sequelize = require("./")
 const cookieSession = require("cookie-session")
 const authRoutes = require("./routes/auth-routes");
 const profileRoutes = require("./routes/profile-routes");
@@ -33,7 +34,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const db = require("./models/index");
-const keys = require('./config/keys');
+
+
+
+
+
 db.sequelize.authenticate().then(()=>{
     console.log('connected to postgres databae')
 })

@@ -18,4 +18,23 @@ db.product = require("./product")(sequelize, Sequelize);
 db.cart = require("./cart")(sequelize, Sequelize);
 db.order = require("./order")(sequelize, Sequelize);
 
+db.user.hasMany(db.product, {as:"product"})
+db.product.belongsTo(db.user,{
+  foreignKey: "userId",
+  as:"user"
+});
+
+db.user.hasOne(db.cart);
+// db.cart.belongsToMany(db.product,
+//   through : db.cart);
+db.order.belongsTo(db.user);
+
+
+
+
+
+
+
+
+
 module.exports = db;

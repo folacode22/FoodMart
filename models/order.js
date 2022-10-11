@@ -1,16 +1,16 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define("order", {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
-    updatedAt: { allowNull: false, type: Sequelize.DATE },
+    updatedAt: { allowNull: false, type: DataTypes.DATE },
   });
   return Order;
 };
