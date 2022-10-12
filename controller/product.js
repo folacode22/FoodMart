@@ -68,8 +68,13 @@ exports.viewProduct = async (req, res) => {
 
 exports.viewAllProduct = async (req, res) => {
   try {
-
-    const stuffs = await Product.findAll()
+const  pagnination = req.query.product
+const {page, limit} = req.query;
+ const stuffs = await Product.findAll()
+ .sort({createdAt: 1})
+ .skip((page -1) * limit)
+ .limit(limit * 10);
+ 
     return res.status(200).json({ count: stuffs.lenght, data: stuffs });
   } catch (error) {
     return res.status(500).json({ message: error.message });
