@@ -10,7 +10,7 @@ const profileRoutes = require("./routes/profile-routes");
 const product = require("./routes/product.routes");
 
 const userRoutes = require("./routes/user.routes");
-const key = require("./config/keys");
+
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.set("view engine", "ejs");
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [key.sessionKey.key],
+    keys: process.env.KEYS,
     resave: false,
     saveUninitialized: false,
     cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 },
