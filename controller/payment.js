@@ -7,10 +7,10 @@ flutterwave_secret_key:[key.flutterwave.secret_key],
 
 })
 
-const chargeCardFunction = async(req,res){
-    let data ={
-        amount : 100,
-        currency: 'NGN',
-        card_number : '',
-    }
-}
+// const chargeCardFunction = async(req,res){
+//     let data ={
+//         amount : 100,
+//         currency: 'NGN',
+//         card_number : '',
+//     }
+// }

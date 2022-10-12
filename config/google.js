@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -19,8 +19,8 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.ClientID,
-      clientSecret: process.env.ClientSecret,
+      clientID: process.env.Google_ClientID,
+      clientSecret: process.env.Google_ClientSecret,
       callbackURL: "/auth/google/redirect",
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -36,7 +36,7 @@ passport.use(
         const newUser = await User.create({
           googleId: profile.id,
           username:profile.displayName,
-        })
+        }).create()
 
         done(null, newUser)
       }
