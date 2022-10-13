@@ -1,13 +1,6 @@
 ## FoodMart
 ---
-
-
-
-
-
-
-
-
+Building a simple order foodonline 
 ---
 
 
