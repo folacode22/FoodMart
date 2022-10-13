@@ -1,27 +1,27 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define(
     "user",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      googleId: { type: DataTypes.STRING },
-      username: { type: DataTypes.STRING },
-      email: { type: DataTypes.STRING },
-      address: { type: DataTypes.STRING },
+      googleId: { type: Sequelize.STRING },
+      username: { type: Sequelize.STRING },
+      email: { type: Sequelize.STRING },
+      address: { type: Sequelize.STRING },
       role: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         enumerable: ["user", "admin"],
         defaultValue: "user",
         allowNull: true,
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
-      updatedAt: { allowNull: false, type: DataTypes.DATE },
+      updatedAt: { allowNull: false, type: Sequelize.DATE },
     },
     {
       freezeTableName: true,

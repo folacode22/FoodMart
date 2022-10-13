@@ -33,17 +33,10 @@ passport.use(
       if(currentUser){
         done(null, currentUser)
       }else{
-        const newUser = await User.create({
-          googleId: profile.id,
-          username:profile.displayName,
-        }).create()
-
-        done(null, newUser)
-      }
-
- // console.log(currentUser)
-    }
-  )
-);
-
-
+      const newUser = await User.create({
+        googleId: profile.id,
+         username:profile.displayName,
+        })
+              done(null, newUser);
+};
+       }));

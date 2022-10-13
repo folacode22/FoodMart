@@ -23,11 +23,11 @@ app.set("view engine", "ejs");
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: process.env.KEYS,
+    keys: [process.env.KEYS],
     resave: false,
     saveUninitialized: false,
     cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 },
-  })
+  })                                                                
 );
 app.use(express.json());
 

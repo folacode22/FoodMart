@@ -1,18 +1,18 @@
 
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
   const Cart = sequelize.define("cart", {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
     createdAt: {
       allowNull: false,
-      type: DataTypes.DATE,
+      type: Sequelize.DATE,
     },
-    updatedAt: { allowNull: false, type: DataTypes.DATE },
+    updatedAt: { allowNull: false, type: Sequelize.DATE },
   });
   return Cart;
 };
